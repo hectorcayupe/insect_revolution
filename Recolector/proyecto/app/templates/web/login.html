@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Login</title>
+</head>
+<body>
+
+    <div class="split-screen">
+        <div class="left">
+            <section class="copy">
+            </section>
+        </div>
+        <div class="right">
+            <form action="" method="POST">{% csrf_token %}
+                <section class="copy">
+                    <h1>{{msg}}</h1>
+                    <h2>Bienvenido de vuelta</h2>
+                    <div class="login-container">
+                        <p>Inicia con tu usuario</p>
+                    </div>
+                </section>
+                <div class="input-container name">
+                    <label for="fname">Usuario</label>
+                    <input id="fname" name="usuario" type="text" placeholder="MiUsuario">
+                </div>
+     
+                <div class="input-container password">
+                    <label for="password"> Contraseña</label>
+                    <input id="password" name="password" type="password"
+                    placeholder="Ingrese su contraseña">
+                    <i class="far fa-eye-slash"></i>
+                </div>
+                <div class="input-container cta">
+                  
+                </div>
+                <button class="signup-btn" type="submit"> Iniciar ahora</button>
+                <section class="copy legal">
+                    <p><span class="small">¿olvido su contraseña? <a href="#">Recuperar</a></span></p>
+                </section>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

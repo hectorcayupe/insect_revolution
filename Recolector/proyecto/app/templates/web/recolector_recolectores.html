@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/recolector_rutas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.dataTables.min.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recolector</title>
+</head>
+<body> 
+    <div class="container">
+
+        <div class="wrapper">
+            <div class="sidebar">
+                <!--Perfil imagen-->
+                <div class="profile">
+                    <img src="{% static 'imagen/perfil.jpg' %}" alt="">
+                    <h3>{{user.first_name}} {{user.last_name}}</h3>
+                    <p>{{user.email}}</p>
+                </div>
+                <!--Menu item-->
+                <ul>
+                    <li><a href="#" class="active">
+                        <span class="item">Editar perfil</span>
+                    </a></li>
+                    <li><a href="{% url 'INDX' %}">
+                        <span class="item">Ingresar residuos</span>
+                    </a></li>
+                    <li><a href="{% url 'INGR' %}">
+                        <span class="item">Mis ingresos</span>
+                    </a></li>
+                    <li><a href="{% url 'RUTAS' %}">
+                        <span class="item">Mis rutas</span>
+                    </a></li>
+                    <li><a href="{% url 'RECO' %}">
+                        <span class="item">Recolectores</span>
+                    </a></li>
+                </ul>
+                <div class="inputfield">
+                  <a class="btn" href="{% url 'LOGOUT' %}">Cerrar sesion</a>
+                  </div>
+                <div class="logo">
+                    <img src="{% static 'imagen/logo2.png' %}" alt="">
+                </div>
+            </div>
+              <!--Menu bar-->
+             <div class="section">
+                <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#"><i class="fas fa-bars"></i></a>
+                </div>
+            </div>  
+        </div>
+        <!--Formulario-->
+        <div class="contenedor" >
+            <h1>Recolectores</h1>
+            <table id="tabla_responsive" class="display responsive nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Recolector</th>
+                        <th>Comuna</th>
+                        <th>Region</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for l in datos %}
+                    <tr>
+                        <td>{{l.user.first_name}} {{l.user.last_name}}</td>
+                        <td>{{l.user.comuna.name}}</td>
+                        <td>{{l.user.comuna.region.name}} {{l.user.comuna.region.ordinal_symbol}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+     
+	
+      
+
+    </div>
+    <script>
+        var hamburger = document.querySelector(".hamburger");
+        hamburger.addEventListener("click",function(){
+            document.querySelector("body").classList.toggle("active");
+        })
+    </script>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src=""></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#tabla_responsive').DataTable({
+             language: {
+                 url: 'https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                 }
+              });
+           });
+   </script>
+    <script type="text/javascript">
+        
+
+       </script>
+
+</body>
+</html>

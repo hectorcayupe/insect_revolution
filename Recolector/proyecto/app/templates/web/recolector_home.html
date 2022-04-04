@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/recolector_html.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recolector</title>
+</head>
+<body> 
+    <div class="container">
+
+        <div class="wrapper">
+            <div class="sidebar">
+                <!--Perfil imagen-->
+                <div class="profile">
+                    <img src="{% static 'imagen/perfil.jpg' %}" alt="">
+                    <h3>{{user.first_name}} {{user.last_name}} {{user.id}}</h3>
+                    <p>{{user.email}}</p>
+                </div>
+                <!--Menu item-->
+                <ul>
+                    <li><a href="#" class="active">
+                        <span class="item">Editar perfil</span>
+                    </a></li>
+                    <li><a href="#">
+                        <span class="{% url 'INDX' %}">Ingresar residuos</span>
+                    </a></li>
+                    <li><a href="{% url 'INGR' %}">
+                        <span class="item">Mis ingresos</span>
+                    </a></li>
+                    <li><a href="{% url 'RUTAS' %}">
+                        <span class="item">Mis rutas</span>
+                    </a></li>
+                    <li><a href="{% url 'RECO' %}">
+                        <span class="item">Recolectores</span>
+                    </a></li>
+                </ul>
+                <div class="inputfield">
+                <a class="btn" href="{% url 'LOGOUT' %}">Cerrar sesion</a>
+                  </div>
+                <div class="logo">
+                    <img src="{% static 'imagen/logo2.png' %}" alt="">
+                </div>
+            </div>
+              <!--Menu bar-->
+             <div class="section">
+                <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#"><i class="fas fa-bars"></i></a>
+                </div>
+            </div>  
+        </div>
+        <!--Formulario-->
+        <div class="title">
+            Bienvenido {{user.first_name}} {{user.last_name}} {{msg}}
+          </div>
+        <div class="register">
+            <div class="logo">
+                <img src="{% static 'imagen/logo2.png' %}" alt="">
+            </div>
+            <div class="title">
+              formulario ingreso de residuos
+            </div>
+            <div class="form">
+                <div class="inputfield">
+                 <form action="" method="POST">
+                    {% csrf_token %}
+                  <label>Seleccione al productor asociado</label>
+                  <div class="custom_select">
+                    <select name="productor">
+                    <option value="">Seleccione Productor</option>
+                    {% for l in productores %}
+                      <option value="{{l.id}}">{{l.productor.user.first_name}} {{l.productor.user.last_name}} </option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                  <div class="inputfield">
+                    <label>Ingrese la cantidad de residuos</label>
+                    <input type="number" class="input" name="kilos">
+                 </div> 
+                 <div class="inputfield">
+                    <input type="submit" value="ingresar residuos" class="btn">
+                  </div>
+                 </form>
+               </div>
+            </div>
+        </div>	
+      
+
+    </div>
+    <script>
+        var hamburger = document.querySelector(".hamburger");
+        hamburger.addEventListener("click",function(){
+            document.querySelector("body").classList.toggle("active");
+        })
+    </script>
+
+</body>
+</html>
